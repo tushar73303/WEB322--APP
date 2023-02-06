@@ -1,11 +1,14 @@
 /*********************************************************************************
-*  WEB322 – Assignment 02
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source 
-*  (including 3rd party web sites) or distributed to other students.
-* 
-*  Name: TUSHAR PANJETA Student ID: 152785213 Date: 05 February 2023
+* WEB322 – Assignment 02
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
+* of this assignment has been copied manually or electronically from any other source
+* (including 3rd party web sites) or distributed to other students.
 *
-*  Online (Cyclic) Link: https://zany-ox-sweatshirt.cyclic.app/about
+* Name: TUSHAR PANJETA Student ID: 157785213 Date: 05 FEB 2023
+*
+* Cyclic Web App URL: https://average-gray-teddy.cyclic.app/
+*
+* GitHub Repository URL: ______________________________________________________
 *
 ********************************************************************************/
 const express = require("express");
@@ -14,34 +17,34 @@ const { initialize, getAllPosts, getPublishedPosts, getCategories } = require(".
 
 const app = express();
 
-// Using the 'public' folder as our static folder
+
 app.use(express.static('public')); 
 
 const HTTP_PORT = process.env.PORT || 8080;
 
-// ========== Home Page Route ==========
+
 app.get("/", (req,res) => {
   res.redirect("/about");
 });
 
-// ========== About Page Route ==========
+
 app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "about.html"));
 })
 
-// ========== Blog Page Route ==========
+
 app.get("/blog", (req, res) => {
   getPublishedPosts()
   .then((data) => {
     res.send(data)
   })
-  // Error Handling
+  
   .catch((err) => {
     res.send(err);
   })
 });
 
-// ========== Posts Page Route ==========
+
 app.get("/posts", (req, res) => {
   getAllPosts()
     .then((data) => {
