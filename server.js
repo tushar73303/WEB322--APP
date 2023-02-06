@@ -6,10 +6,9 @@
 *
 * Name: TUSHAR PANJETA Student ID: 157785213 Date: 05 FEB 2023
 *
-* Cyclic Web App URL: https://average-gray-teddy.cyclic.app/
+* Cyclic Web App URL: https://average-gray-teddy.cyclic.app/about
 *
-* GitHub Repository URL: ______________________________________________________
-*
+* GitHub Repository URL: https://github.com/tushar73303/WEB322--APP
 ********************************************************************************/
 const express = require("express");
 const path = require("path");
