@@ -1,79 +1,133 @@
+//blog-service.js
 const fs = require('fs');
-const { resolve } = require('path');
-const path = require("path");
+var posts = [];
+var categories = [];
 
-// Globally declared arrays
-let posts = [];
-let categories = [];
-
-// => Read the posts.json and categories.json files and store the data in global arrays
 function initialize() {
-    // Ensures that the categories file is read and assigned first before usage
     return new Promise((resolve, reject) => {
-        fs.readFile(path.join(__dirname, "data", "posts.json"), 'utf8', (err, data) => {
+        fs.readFile('./data/posts.json',  (err, data) => {
             if (err) {
-                // Error Handling
-              reject("Unable to read posts file");
-            }
-
-            // Saving posts
+                return reject(err);
+            } 
             posts = JSON.parse(data);
+            
 
-            // Only reading categories file if posts has been read
-            fs.readFile(path.join(__dirname, "data", "categories.json"), 'utf8', (err, data) => {
-                if (err) {
-                    // Error Handling
-                  reject("Unable to read categories file");
-                }
+                fs.readFile('./data/categories.json',  (err, data) => {
+                    if (err) {
+                       return reject(err);
+                    }
+                    categories = JSON.parse(data);
+                    resolve();
+                });
+            
+        });
+    });
+  }
+  
 
-                // Saving categories
-                categories = JSON.parse(data);
-
-                // Communicates back to server stating that the operation was a success
-                resolve();
-              });
-          });
-    })
+function getPublishedPosts() {
+    return new Promise((resolve, reject) => {
+        var published = posts.filter(post => post.published === true)
+        if(published.length == 0){
+           reject("no results returned");
+        }
+        else{
+           resolve(published);
+        }
+       })
 }
 
-// => Provides full array of "posts" objects 
 function getAllPosts() {
     return new Promise((resolve, reject) => {
-        if (posts.length === 0) {
-            reject("No results returned");
-        } else {
+        if (posts.length == 0){
+            reject("no results returned");
+        }
+        else{
             resolve(posts);
         }
     })
 }
 
-// => Provides an array of "post" objects whose published property is true 
-function getPublishedPosts() {
-    return new Promise((resolve, reject) => {
-        let publishedPosts = [];
-        posts.forEach((post) => {
-            if (post.published === true) {
-                publishedPosts.push(post);
-            }
-        })
-
-        if (publishedPosts.length > 0) {
-            resolve(publishedPosts);
-        } else {
-            reject("No results returned");
-        }
-    })    
-}
-
-// => Provides full array of "category" objects 
 function getCategories() {
     return new Promise((resolve, reject) => {
-        if (categories.length === 0) {
-            reject("No results returned");
-        } else {
+        if (categories.length == 0){
+            reject("no results returned");
+        }
+        else{
             resolve(categories);
         }
     })
 }
 
-module.exports = { initialize, getAllPosts, getPublishedPosts, getCategories };
+function addPost(postData) {
+  return new Promise((resolve, reject) => {
+    if (!postData.published) {
+      postData.published = false;
+    } else {
+      postData.published = true;
+    }
+    postData.id = posts.length + 1;
+    postData.postDate = new Date().toISOString().substr(0, 10); // Add this line to set the postDate to the current date in the format YYYY-MM-DD
+    posts.push(postData);
+    resolve(postData);
+  });
+}
+
+  function getPostsByCategory(category) {
+    return new Promise((resolve, reject) => {
+        const filteredPosts = posts.filter(post => post.category === category);
+        if (filteredPosts.length === 0) {
+          reject("No results returned");
+        } else {
+          resolve(filteredPosts);
+        }
+      });
+  }
+  
+  function getPostsByMinDate(minDateStr) {
+    return new Promise((resolve, reject) => {
+        const filteredPosts = posts.filter(post => new Date(post.postDate) >= new Date(minDateStr));
+        if (filteredPosts.length === 0) {
+          reject("No results returned");
+        } else {
+          resolve(filteredPosts);
+        }
+      });
+  }
+  
+  function getPostById(id) {
+    return new Promise((resolve, reject) => {
+      const foundPost = posts.find(post => post.id === id);
+      if (!foundPost) {
+        reject("No result returned");
+      } else {
+        resolve(foundPost);
+      }
+    });
+  }
+
+  function getPublishedPostsByCategory(category) {
+    return new Promise((resolve, reject) => {
+      const publishedAndFilteredPosts = posts.filter(
+        (post) => post.published === true && post.category === category
+      );
+      if (publishedAndFilteredPosts.length === 0) {
+        reject("no results returned");
+      } else {
+        resolve(publishedAndFilteredPosts);
+      }
+    });
+  }
+  
+
+module.exports = {
+    initialize,
+  getPublishedPosts,
+  getAllPosts,
+  getCategories,
+  addPost,
+  getPostsByCategory,
+  getPostsByMinDate,
+  getPostById,
+  getPublishedPostsByCategory
+};
