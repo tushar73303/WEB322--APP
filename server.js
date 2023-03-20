@@ -1,14 +1,17 @@
 /*********************************************************************************
-* *  WEB322 – Assignment 04
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part 
-*  of this assignment has been copied manually or electronically from any other source 
-*  (including 3rd party web sites) or distributed to other students.
-* 
-*  Name: Aryan Duhan Student ID: 148819212 Date: 27-2-2023
+* WEB322 – Assignment 04
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
+* of this assignment has been copied manually or electronically from any other source
+* (including 3rd party web sites) or distributed to other students.
 *
-*  Online (Cyclic) Link: https://real-pink-llama-hose.cyclic.app/blog
+* Name: TUSHAR PANJETA_ Student ID: 157785213 Date: 20 MARCH 2023
 *
-********************************************************************************/ 
+* Cyclic Web App URL: ________________________________________________________
+*
+* GitHub Repository URL: ______________________________________________________
+*
+********************************************************************************/
+
 //server.js
 const blogService = require('./blog-service');
 const express = require('express');
