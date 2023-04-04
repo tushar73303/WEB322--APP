@@ -6,9 +6,9 @@
 * 
 *  Name: TUSHAR PANJETA Student ID:157785213 Date: 04-04-2023
 *
-*  Cyclic Web App URL: https://awful-erin-turkey.cyclic.app/categories
+*  Cyclic Web App URL: https://average-gray-teddy.cyclic.app/
 *
-*  GitHub Repository URL: https://github.com/Aryan26101/web322-Assignment-5
+*  GitHub Repository URL: https://github.com/tushar73303/WEB322--APP
 *
 ********************************************************************************/ 
 
