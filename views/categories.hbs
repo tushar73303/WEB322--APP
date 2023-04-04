@@ -1,51 +1,44 @@
-<!--categories.hbs-->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Latest compiled and minified Bootstrap 3.4.1 CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css" />
-      
-    <title>TUSHAR PANJETA's Blog</title>
-  </head>
-  <body>
-    <div class="container" style="padding-top:60px">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Categories</h2>
-                <hr />
+<h1 class="m-5 text-center ">
+    Categories
+</h1>
+{{#if categories}}
 
-                <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Category ID</th>
-                        <th>Category Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#each categories}}
-                    <tr>
-                        <td><a href="/posts?category={{this.id}}">{{this.id}}</a></td>
-                        <td><a href="/posts?category={{this.id}}">{{this.category}}</a></td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-                </div>
+	<table class='table'>
+		<thead>
+			<th class='text-center'>
+				Category Id
+			</th>
+			<th>
+				Category Name
+			</th>
+			<th>
+				Delete
+			</th>
+		</thead>
+		{{#each categories}}
+			<tr>
+				<td scope='row' class='text-center'>
+					<a href='/posts?category={{id}}'>{{id}}</a>
+				</td>
+				<td>
+					{{category}}
+				</td>
+				<td>
+					<form action="/categories/delete/{{id}}" method="get">
+					
+						<input type="submit" class="btn btn-danger" value="Delete">
+					</form>
+				</td>
+			</tr>
+		{{/each}}
+	</table>
 
-                {{#unless categories}}
-                <div class="col-md-12 text-center">
-                <strong>{{message}}</strong>
-                </div>
-                {{/unless}}
+{{else}}
+	<div class='alert alert-danger' role='alert'>
+		No categories found.
+	</div>
+{{/if}}
 
-            </div>
-        </div>
-
-    </div>
-  </body>
-</html>
+<div class="d-flex justify-content-center">
+	<a href="/categories/add" class="btn btn-primary">Add Category</a>
+</div>
