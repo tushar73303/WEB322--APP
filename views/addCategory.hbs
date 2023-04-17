@@ -1,28 +1,11 @@
-<div class='row mt-5'>
-	<div class='col-md-12'>
-		<h2 class='text-center'><b>Add Category</b></h2>
-		<form method='post' action='/category/add' >
-			<h3>
-				Category
-			</h3>
-			<div class='input-group mb-3'>
-				<input
-					type='text'
-					class='form-control'
-					autofocus
-					aria-label='Category'
-					name="category"
-                    
-				/>
-			</div>
-            <div class="d-flex justify-content-center">
-			<input
-				type='submit'
-				class='btn btn-primary pull-right'
-				value='Add Category'
-			/>
-            </div>
-			
-		</form>
-	</div>
+<h2>Add Category</h2>
+<br />
+<form method="post" action="/categories/add">
+<div class="form-group">
+<label for="category">Category</label>
+<input type="text" class="form-control" id="category" name="category">
+</div><hr />
+<input type="submit" class="btn btn-primary pull-right" value="Add Category" />
+</form>
 </div>
+</html>

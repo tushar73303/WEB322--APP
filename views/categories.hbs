@@ -1,44 +1,29 @@
-<h1 class="m-5 text-center ">
-    Categories
-</h1>
-{{#if categories}}
-
-	<table class='table'>
-		<thead>
-			<th class='text-center'>
-				Category Id
-			</th>
-			<th>
-				Category Name
-			</th>
-			<th>
-				Delete
-			</th>
-		</thead>
-		{{#each categories}}
-			<tr>
-				<td scope='row' class='text-center'>
-					<a href='/posts?category={{id}}'>{{id}}</a>
-				</td>
-				<td>
-					{{category}}
-				</td>
-				<td>
-					<form action="/categories/delete/{{id}}" method="get">
-					
-						<input type="submit" class="btn btn-danger" value="Delete">
-					</form>
-				</td>
-			</tr>
-		{{/each}}
-	</table>
-
+<h2>Categories <a href="/categories/add" class="btn btn-success pull-right">Add Category</a></h2>
+<hr />
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Category ID</th>
+<th scope="col">Category Name</th>
+</tr>
+</thead>
+{{#if categories}} 
+<tbody>
+{{#each categories}}
+<tr>
+<td><a href="/posts?category={{id}}">{{id}}</a></td>
+<td><a href="/posts?category={{id}}">{{category}}</a></td>
+<td><a href="categories/delete/{{id}}" class="btn btn-danger">Remove</a></td>
+</tr>
+{{/each}}
+</tbody>
 {{else}}
-	<div class='alert alert-danger' role='alert'>
-		No categories found.
-	</div>
+<tbody>
+<tr>
+<td colspan="2" class="text-center">{{message}}</td>
+</tr>
+</tbody>
 {{/if}}
-
-<div class="d-flex justify-content-center">
-	<a href="/categories/add" class="btn btn-primary">Add Category</a>
+</table>
 </div>
