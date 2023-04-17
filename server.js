@@ -1,13 +1,16 @@
 /*********************************************************************************
- *  WEB322 – Assignment 06
- *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source
- *  (including 3rd party web sites) or distributed to other students.
- *
- *  Name: Tushar Panjeta Student ID: 157785213 Date: 16 April 2023
- *
- *  Online (Cyclic) Link: https://zany-ox-sweatshirt.cyclic.app/about
- *
- ********************************************************************************/
+* WEB322 – Assignment 06
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part of this
+* assignment has been copied manually or electronically from any other source (including web sites) or
+* distributed to other students.
+*
+* Name: TUSHAR PANJETA Student ID: 157785213 Date: 16 APRIL2023
+*
+* Cyclic Web App URL: https://average-gray-teddy.cyclic.app
+*
+* GitHub Repository URL: https://github.com/tushar73303/WEB322--APP
+*
+********************************************************************************/
 const express = require("express");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
